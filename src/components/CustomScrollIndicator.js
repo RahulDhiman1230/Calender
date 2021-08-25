@@ -11,7 +11,7 @@ export const CustomScrollIndicator = (props) => {
     return (
         <View style={[styles.scrollBar, {height : SCROLL_BAR_HEIGHT}]}>
            <View
-           style={[styles.Indicator, {top: `${(props.scrollPerc).toFixed()}%`,
+           style={[styles.Indicator, {top: `${Number((props.scrollPerc||0)).toFixed()}%`,
            height: `${scrollElementHeightPercent}%`}]}></View>
         </View>
     )
@@ -29,7 +29,8 @@ const styles = StyleSheet.create({
     },
     Indicator:{
         position: "absolute",
-        width:6,
-        backgroundColor:'#2977FF'
+        width:8,
+        backgroundColor:'#2977FF',
+        borderRadius:4
     }
 })

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Dimensions, StyleSheet, Text, View, Image, TouchableOpacity, FlatList, ScrollView } from 'react-native'
 import DropDownPicker from 'react-native-dropdown-picker'
-import ScrollIndicator from "react-native-custom-scroll-indicator";
+
 
 //customimports
 import {CustomScrollIndicator} from '../components/CustomScrollIndicator'
@@ -44,11 +44,20 @@ export const CustomRenderItem = (props) => {
 const [contentOffset, setContentOffset] = React.useState({ x: 0, y: 0 });
 const [contentSize, setContentSize] = React.useState(0);
 const [scrollViewHeight, setScrollViewHeight] = React.useState(0);
+const [scrollPerc, setScrollPrec] = React.useState(0);
+React.useEffect( () =>{
+    
+        const prec = (contentOffset.y / (contentSize - scrollViewHeight))
+         * (100 - scrollElementHeightPercent);
+        setScrollPrec(prec);
+   
+},[contentOffset, contentSize]);
 
-const scrollPerc = (contentOffset.y / (contentSize - scrollViewHeight))
-    * (100 - scrollElementHeightPercent);
 
     const onPress = () =>{
+        if(!flag === false){
+            setContentOffset({ x: 0, y: 0 });
+        }
         setFlag(!flag);
     }
 
